@@ -1,1 +1,235 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Elimina el margen por defecto y fuerza que ocupe todo */
+.smooth-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg,
+    rgba(10, 25, 47, 0.95) 0%,
+    rgba(17, 34, 64, 0.95) 50%,
+    rgba(10, 25, 47, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.smooth-transition-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Efectos de desvanecimiento entre secciones */
+section {
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+section.fade-out {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.98);
+  filter: blur(5px);
+}
+
+section.fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+}
+
+/* Scroll suave global */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mejoras en las transiciones de los componentes existentes */
+.hero-section, .about-section {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Efecto de ondas durante la transición */
+.wave-transition {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg,
+    transparent 0%,
+    rgba(6, 182, 212, 0.1) 25%,
+    rgba(139, 92, 246, 0.1) 50%,
+    rgba(236, 72, 153, 0.1) 75%,
+    transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.wave-transition.active {
+  transform: translateX(100%);
+}
+
+/* Partículas de transición */
+.transition-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.transition-particles.active {
+  opacity: 1;
+}
+
+.transition-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, #06b6d4, #8b5cf6);
+  border-radius: 50%;
+  animation: particle-flow 1.5s ease-out forwards;
+}
+
+@keyframes particle-flow {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-100px);
+  }
+}
+
+/* Estados de carga y transición */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle,
+    rgba(10, 25, 47, 0.9) 0%,
+    rgba(17, 34, 64, 0.95) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(6, 182, 212, 0.3);
+  border-top: 3px solid #06b6d4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mejoras en la navegación */
+.nav-transition {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-transition:hover {
+  transform: translateY(-2px);
+  text-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+}
+
+/* Efectos de entrada mejorados */
+@keyframes fadeInUpStagger {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.stagger-animation > * {
+  animation: fadeInUpStagger 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wave-transition {
+    display: none;
+  }
+
+  .transition-particles {
+    display: none;
+  }
+}
+
+/* Mejoras de rendimiento */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Estados de enfoque mejorados */
+*:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Puedes añadir esto a tu archivo global Tailwind o en styles.css */
+.project-card-masonry {
+  @apply bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-xl backdrop-blur-sm transition-transform duration-300 hover:scale-[1.02] hover:shadow-cyan-500/30;
+}
+
+.project-card-masonry:hover .project-overlay {
+  @apply opacity-100;
+}
+
+.project-image-container {
+  @apply relative w-full h-auto overflow-hidden;
+}
+
+.project-image {
+  @apply w-full h-auto object-cover transition-all duration-300 hover:scale-110;
+}
+
+.project-content {
+  @apply p-4 flex flex-col gap-2;
+}

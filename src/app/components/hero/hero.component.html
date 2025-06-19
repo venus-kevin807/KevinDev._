@@ -1,0 +1,142 @@
+<section
+  #heroSection
+  class="relative min-h-screen flex flex-col justify-center items-center text-white overflow-hidden font-sans"
+  id="home"
+  (mousemove)="onMouseMove($event)"
+  [@heroEnter]
+>
+  <!-- Vanta Background -->
+  <div class="absolute inset-0" #vanta></div>
+
+  <!-- Enhanced Background Effects -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Animated Grid Overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Floating Geometric Elements -->
+    <div
+      *ngFor="let element of floatingElements; trackBy: trackByElement"
+      class="floating-element"
+      [class.circle]="element.type === 'circle'"
+      [class.square]="element.type === 'square'"
+      [class.triangle]="element.type === 'triangle'"
+      [style.left.%]="element.x"
+      [style.top.%]="element.y"
+      [style.width.px]="element.size"
+      [style.height.px]="element.size"
+      [style.opacity]="element.opacity"
+    ></div>
+
+    <!-- Gradient Orbs with Mouse Interaction -->
+    <div class="gradient-orb hero-orb-1"
+         [style.transform]="'translate(' + mouseX * 0.03 + 'px, ' + mouseY * 0.03 + 'px)'"></div>
+    <div class="gradient-orb hero-orb-2"
+         [style.transform]="'translate(' + mouseX * -0.02 + 'px, ' + mouseY * -0.02 + 'px)'"></div>
+    <div class="gradient-orb hero-orb-3"
+         [style.transform]="'translate(' + mouseX * 0.025 + 'px, ' + mouseY * 0.025 + 'px)'"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+    <!-- Time and Location Info -->
+    <div
+      class="mb-8 flex justify-center items-center gap-8 text-sm text-cyan-400/80 font-mono"
+      [@subtitleReveal]
+    >
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        <span>{{ currentTime | date:'HH:mm:ss' }}</span>
+      </div>
+      <div class="hidden sm:block w-px h-4 bg-cyan-400/30"></div>
+      <div class="hidden sm:flex items-center gap-2">
+        <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+        <span>Medellín, Colombia</span>
+      </div>
+    </div>
+
+    <!-- Main Title with Typing Effect -->
+    <div class="mb-8" [@textReveal]>
+      <h1 class="text-6xl sm:text-8xl lg:text-9xl font-extrabold mb-4 tracking-tight">
+        <span class="hero-name-gradient">
+          {{ displayText }}<span class="typing-cursor">|</span>
+        </span>
+      </h1>
+
+      <!-- Glitch Effect Overlay -->
+      <div class="glitch-container">
+        <div class="glitch-text" [attr.data-text]="fullText">{{ displayText }}</div>
+      </div>
+    </div>
+
+    <!-- Dynamic Subtitle with Skills Rotation -->
+    <div
+      class="mb-12 space-y-4"
+      [@subtitleReveal]
+    >
+      <p class="text-xl sm:text-2xl lg:text-3xl text-gray-300 font-light leading-relaxed">
+        <span class="skill-highlight">{{ displaySkill }}</span><span class="skill-cursor">_</span>
+      </p>
+
+      <!-- Tech Stack Badges -->
+      <div class="flex flex-wrap justify-center gap-3 mt-6">
+        <span class="tech-badge">Angular</span>
+        <span class="tech-badge">TypeScript</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">PHP</span>
+        <span class="tech-badge">SQL</span>
+        <span class="tech-badge">UI/UX</span>
+      </div>
+    </div>
+
+    <!-- Interactive CTA Section -->
+    <div
+      class="space-y-6"
+      [@scrollReveal]
+    >
+      <!-- Scroll Down Indicator -->
+      <div class="scroll-indicator-container">
+        <button
+          (click)="scrollToAbout()"
+          class="scroll-indicator group"
+        >
+          <div class="scroll-wheel">
+            <div class="scroll-dot"></div>
+          </div>
+          <span class="scroll-text">Scroll to explore</span>
+          <div class="scroll-arrow">↓</div>
+        </button>
+      </div>
+
+      <!-- Social Links (Optional) -->
+      <div class="flex justify-center gap-6 mt-8">
+        <a href="#" class="social-link">
+          <span class="social-icon">💼</span>
+          <span class="social-label">Portfolio</span>
+        </a>
+        <a href="#" class="social-link">
+          <span class="social-icon">📧</span>
+          <span class="social-label">Contact</span>
+        </a>
+        <a href="#" class="social-link">
+          <span class="social-icon">📱</span>
+          <span class="social-label">Resume</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animated Border Lines -->
+  <div class="border-lines">
+    <div class="border-line border-line-1"></div>
+    <div class="border-line border-line-2"></div>
+    <div class="border-line border-line-3"></div>
+    <div class="border-line border-line-4"></div>
+  </div>
+
+  <!-- Particle System Enhancement -->
+  <div class="particle-system">
+    <div class="particle-stream stream-1"></div>
+    <div class="particle-stream stream-2"></div>
+    <div class="particle-stream stream-3"></div>
+  </div>
+</section>

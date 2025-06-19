@@ -1,0 +1,420 @@
+/* Grid animado de fondo */
+.grid-background {
+  background-image:
+    linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  width: 100%;
+  height: 100%;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Orbes de gradiente flotantes */
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(45deg, #06b6d4, #8b5cf6);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899);
+  top: 60%;
+  right: 20%;
+  animation-delay: 2s;
+}
+
+.orb-3 {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(45deg, #ec4899, #06b6d4);
+  bottom: 20%;
+  left: 30%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* Animación de gradiente en texto */
+@keyframes animate-gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient-x {
+  animation: animate-gradient-x 3s ease infinite;
+}
+
+/* Contenedor de línea de tiempo */
+.timeline-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Línea principal de tiempo */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: rgba(6, 182, 212, 0.2);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.timeline-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, #06b6d4, #8b5cf6, #ec4899);
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+
+/* Items de la línea de tiempo */
+.timeline-item {
+  position: relative;
+  margin: 4rem 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.timeline-left {
+  justify-content: flex-end;
+  padding-right: calc(50% + 3rem);
+}
+
+.timeline-right {
+  justify-content: flex-start;
+  padding-left: calc(50% + 3rem);
+}
+
+/* Nodo de timeline */
+.timeline-node {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.timeline-node-inner {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #06b6d4, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-icon {
+  font-size: 1.5rem;
+}
+
+.timeline-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(6, 182, 212, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Tarjeta de experiencia */
+.experience-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.experience-card:hover::before {
+  left: 100%;
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.timeline-item.active .experience-card {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.4);
+  transform: scale(1.02);
+}
+
+.timeline-item.active .timeline-node-inner {
+  transform: scale(1.2);
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+}
+
+/* Contenido de la tarjeta */
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.experience-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #06b6d4;
+  margin: 0;
+}
+
+.experience-period {
+  font-size: 0.875rem;
+  color: #8b5cf6;
+  font-weight: 600;
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.experience-company {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ec4899;
+  margin-bottom: 0.5rem;
+}
+
+.experience-description {
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* Tecnologías */
+.experience-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tech-badge {
+  background: linear-gradient(45deg, #06b6d4, #8b5cf6);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Detalles expandibles */
+.experience-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.experience-details.expanded {
+  max-height: 300px;
+}
+
+.experience-achievements {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.experience-achievements li {
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.achievement-bullet {
+  color: #06b6d4;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Botón expandir */
+.expand-button {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(6, 182, 212, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #06b6d4;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.expand-button:hover {
+  background: rgba(6, 182, 212, 0.3);
+  transform: scale(1.1);
+}
+
+.expand-button span {
+  transition: transform 0.3s ease;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Nube de habilidades */
+.skills-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.skill-bubble {
+  background: linear-gradient(45deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.2));
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #06b6d4;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  animation: skill-float 3s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+}
+
+.skill-bubble:hover {
+  transform: scale(1.1);
+  background: linear-gradient(45deg, rgba(6, 182, 212, 0.3), rgba(139, 92, 246, 0.3));
+  box-shadow: 0 10px 20px rgba(6, 182, 212, 0.2);
+}
+
+.skill-bubble:nth-child(odd) {
+  animation-direction: reverse;
+}
+
+@keyframes skill-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 2rem;
+  }
+
+  .timeline-node {
+    left: 2rem;
+  }
+
+  .timeline-left,
+  .timeline-right {
+    justify-content: flex-start;
+    padding-left: 5rem;
+    padding-right: 1rem;
+  }
+
+  .experience-card {
+    max-width: none;
+  }
+
+  .timeline-node-inner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .timeline-icon {
+    font-size: 1.25rem;
+  }
+
+  .orb-1, .orb-2, .orb-3 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skills-cloud {
+    gap: 0.5rem;
+  }
+
+  .skill-bubble {
+    font-size: 0.875rem !important;
+    padding: 0.5rem 1rem;
+  }
+}

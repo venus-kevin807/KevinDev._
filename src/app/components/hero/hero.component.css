@@ -1,0 +1,444 @@
+/* Grid overlay animado */
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-drift 25s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes grid-drift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+/* Elementos flotantes geométricos */
+.floating-element {
+  position: absolute;
+  animation: float-up 15s linear infinite;
+  filter: blur(0.5px);
+}
+
+.floating-element.circle {
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(6, 182, 212, 0.4), rgba(139, 92, 246, 0.4));
+}
+
+.floating-element.square {
+  background: linear-gradient(45deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.4));
+  transform: rotate(45deg);
+}
+
+.floating-element.triangle {
+  width: 0 !important;
+  height: 0 !important;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 12px solid rgba(6, 182, 212, 0.4);
+}
+
+@keyframes float-up {
+  0% { transform: translateY(100vh) rotate(0deg); }
+  100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+/* Orbes de gradiente para hero */
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.hero-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
+  top: 20%;
+  left: 10%;
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.hero-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  top: 60%;
+  right: 15%;
+  animation: pulse-glow 5s ease-in-out infinite reverse;
+}
+
+.hero-orb-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%);
+  bottom: 20%;
+  left: 20%;
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+/* Título principal con gradiente heroico */
+.hero-name-gradient {
+  background: linear-gradient(
+    135deg,
+    #06b6d4 0%,
+    #8b5cf6 25%,
+    #ec4899 50%,
+    #06b6d4 75%,
+    #8b5cf6 100%
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease-in-out infinite;
+  text-shadow: 0 0 50px rgba(6, 182, 212, 0.3);
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Cursor de tipeo */
+.typing-cursor {
+  color: #06b6d4;
+  animation: blink 1.2s step-start infinite;
+}
+
+.skill-cursor {
+  color: #8b5cf6;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Efecto glitch */
+.glitch-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.glitch-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff0000, #00ff00, #0000ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: glitch-effect 8s infinite;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+@keyframes glitch-effect {
+  0%, 95% { opacity: 0; }
+  95.1%, 96% {
+    opacity: 0.8;
+    transform: translate(2px, -2px);
+  }
+  96.1%, 97% {
+    opacity: 0.6;
+    transform: translate(-2px, 2px);
+  }
+  97.1%, 98% {
+    opacity: 0.4;
+    transform: translate(1px, -1px);
+  }
+  98.1%, 100% { opacity: 0; }
+}
+
+/* Destacado de habilidades */
+.skill-highlight {
+  background: linear-gradient(45deg, #06b6d4, #8b5cf6, #ec4899);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: skill-glow 3s ease-in-out infinite;
+}
+
+@keyframes skill-glow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Badges de tecnología */
+.tech-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #06b6d4;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
+}
+
+/* Indicador de scroll mejorado */
+.scroll-indicator-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #06b6d4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+
+.scroll-wheel {
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(6, 182, 212, 0.6);
+  border-radius: 12px;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.scroll-dot {
+  width: 4px;
+  height: 4px;
+  background: #06b6d4;
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll-bounce 2s infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(20px); }
+}
+
+.scroll-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  animation: arrow-bounce 2s infinite;
+}
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.scroll-indicator:hover {
+  transform: scale(1.05);
+  color: #ffffff;
+}
+
+/* Enlaces sociales */
+.social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.social-link:hover {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.3);
+  color: #06b6d4;
+  transform: translateY(-4px);
+}
+
+.social-icon {
+  font-size: 1.5rem;
+}
+
+.social-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Líneas de borde animadas */
+.border-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.border-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+  opacity: 0.6;
+}
+
+.border-line-1 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  animation: border-flow-horizontal 8s linear infinite;
+}
+
+.border-line-2 {
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #8b5cf6, transparent);
+  animation: border-flow-vertical 10s linear infinite;
+}
+
+.border-line-3 {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(270deg, transparent, #ec4899, transparent);
+  animation: border-flow-horizontal 12s linear infinite reverse;
+}
+
+.border-line-4 {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(0deg, transparent, #06b6d4, transparent);
+  animation: border-flow-vertical 9s linear infinite reverse;
+}
+
+@keyframes border-flow-horizontal {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+@keyframes border-flow-vertical {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Sistema de partículas */
+.particle-system {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle-stream {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(180deg, transparent, #06b6d4, transparent);
+  opacity: 0.4;
+}
+
+.stream-1 {
+  left: 20%;
+  animation: particle-fall 4s linear infinite;
+}
+
+.stream-2 {
+  left: 60%;
+  animation: particle-fall 6s linear infinite 2s;
+  background: linear-gradient(180deg, transparent, #8b5cf6, transparent);
+}
+
+.stream-3 {
+  left: 80%;
+  animation: particle-fall 5s linear infinite 1s;
+  background: linear-gradient(180deg, transparent, #ec4899, transparent);
+}
+
+@keyframes particle-fall {
+  0% { transform: translateY(-100px); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero-orb-1, .hero-orb-2, .hero-orb-3 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .scroll-text {
+    display: none;
+  }
+
+  .social-link {
+    min-width: 60px;
+    padding: 0.75rem;
+  }
+
+  .tech-badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-element {
+    display: none;
+  }
+
+  .border-lines {
+    display: none;
+  }
+}
