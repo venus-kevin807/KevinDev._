@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-portfolio": {
+    "KevinDev_": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -33,6 +33,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/KevinDev._/",
               "budgets": [
                 {
                   "type": "initial",
@@ -41,8 +42,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "7kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"
